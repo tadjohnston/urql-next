@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import listingQuery from '../graphql/listing'
-import { useQuery } from 'urql'
+import { useQuery } from '@urql/preact'
 import { withUrqlClient } from 'next-urql'
 
 function Home(props) {
