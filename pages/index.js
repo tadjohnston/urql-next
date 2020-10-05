@@ -1,7 +1,29 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import listingQuery from '../graphql/listing'
+import { useQuery } from 'urql'
+import { withUrqlClient } from 'next-urql'
 
-export default function Home() {
+function Home(props) {
+
+  const [result] = useQuery({
+    query: listingQuery,
+    variables: {
+      listingId: props.listingId,
+    }
+  })
+
+  const { data, fetching, error } = result
+
+  console.log('result... ', result)
+  if (fetching || error) {
+    return (
+      <p>There's nothing here! But you won't see me because I've been pre-passed by urql-next.</p>
+    )
+  }
+
+  console.log('data: ', data)
+
   return (
     <div className={styles.container}>
       <Head>
@@ -12,6 +34,7 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
+          {data.listing.propertyLabel}
         </h1>
 
         <p className={styles.description}>
@@ -63,3 +86,14 @@ export default function Home() {
     </div>
   )
 }
+
+Home.getInitialProps = async (ctx) => {
+  // Do something with the urql Client instance!
+  let client = ctx.urqlClient;
+
+  return {
+    listingId: '100067741'
+  }
+};
+
+export default withUrqlClient(() => ({ url: 'http://localhost:3000/api/graphql' }), { ssr: true })(Home)

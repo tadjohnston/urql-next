@@ -8,8 +8,22 @@
     "start": "next start"
   },
   "dependencies": {
+    "@rentpath/rent-js-api": "^23.8.1",
+    "apollo-server-micro": "^2.18.1",
+    "date-fns": "^2.16.1",
+    "graphql": "^15.3.0",
+    "graphql-tag": "^2.11.0",
+    "isomorphic-unfetch": "^3.1.0",
     "next": "9.5.3",
+    "next-urql": "^2.0.0",
+    "prom-client": "^12.0.0",
+    "ramda": "^0.27.1",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "reselect": "^4.0.0",
+    "urql": "^1.10.1"
+  },
+  "resolutions": {
+    "graphql": "15.3.0"
   }
 }
