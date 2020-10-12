@@ -1,4 +1,6 @@
 import Head from 'next/head'
+// promise pending if not included fetch
+import fetch from 'isomorphic-unfetch'
 import styles from '../styles/Home.module.css'
 import listingQuery from '../graphql/listing'
 import { useQuery } from 'urql'
